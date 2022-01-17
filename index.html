@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄</title>
+    <script type='text/javascript'>
+      onload = function() {
+        var click_cnt = 0;
+        var $html = document.getElementsByTagName("html")[0];
+        var $body = document.getElementsByTagName("body")[0];
+        $html.onclick = function(e) {
+          var $elem = document.createElement("b");
+          $elem.style.color = "#E94F06";
+          $elem.style.zIndex = 9999;
+          $elem.style.position = "absolute";
+          $elem.style.select = "none";
+          var x = e.pageX;
+          var y = e.pageY;
+          $elem.style.left = (x - 10) + "px";
+          $elem.style.top = (y - 20) + "px";
+          clearInterval(anim);
+          switch (++click_cnt) {
+            case 10:
+              $elem.innerText = "OωO";
+              break;
+            case 20:
+              $elem.innerText = "(๑•́ ∀ •̀๑)";
+              break;
+            case 30:
+              $elem.innerText = "(๑•́ ₃ •̀๑)";
+              break;
+            case 40:
+              $elem.innerText = "(๑•̀_•́๑)";
+              break;
+            case 50:
+              $elem.innerText = "（￣へ￣）";
+              break;
+            case 60:
+              $elem.innerText = "(╯°口°)╯(┴—┴";
+              break;
+            case 70:
+              $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+              break;
+            case 80:
+              $elem.innerText = "╮(｡>口<｡)╭";
+              break;
+            case 90:
+              $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+              break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+              $elem.innerText = "(ꐦ°᷄д°᷅)";
+              break;
+            default:
+              $elem.innerText = "❤";
+              break;
+          }
+          $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+          var increase = 0;
+          var anim;
+          setTimeout(function() {
+            anim = setInterval(function() {
+              if (++increase == 150) {
+                clearInterval(anim);
+                $body.removeChild($elem);
+              }
+              $elem.style.top = y - 20 - increase + "px";
+              $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+          }, 70);
+          $body.appendChild($elem);
+        };
+      };
+
+    </script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(54, 66, 70);
+        }
+
+        .tree {
+            position: relative;
+            width: 500px;
+            height: 700px;
+            display: flex;
+            justify-content: center;
+        }
+        /*绘制星星*/
+        .star {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: rgb(236, 234, 167);
+            z-index: 999;
+            clip-path: polygon(50% 0, 65% 40%, 100% 40%, 72% 60%,
+                    85% 100%, 50% 75%, 15% 100%, 28% 60%, 0 40%, 35% 40%);
+        }
+        .tree li{
+            position: absolute;
+            top: 25px;
+            width: 2px;
+            /*颜色渐变*/
+            background: linear-gradient(rgba(46,204,113,0),rgba(46,204,113,.25));
+            transform-origin: 0 0;
+            /*按照规定的动画 4秒内播放完毕 低速开始和结束 无限次播放*/
+            animation: swing 10s ease-in-out infinite;
+            height: calc(var(--i)*4px);
+            /*动画开始前的等待时间*/
+            animation-delay:calc(var(--i)*-0.23s);
+        }
+
+        @keyframes swing{
+            0%,
+            100%{
+                transform: rotate(-30deg);
+            }
+            0%{
+                opacity: 1;
+            }
+            5%,45%{
+                opacity: 0.25;
+            }
+            50%,100%{
+                opacity: 1;
+            }
+            50%{
+                transform: rotate(30deg);
+            }
+        }
+        .tree li::before{
+            content: '';
+            font-size: 1px;
+            position: absolute;
+            left: -1px;
+            bottom: 1px;
+            width: 3px;
+            height: 3px;
+        }
+        .tree li:nth-child(4n)::before{
+            background-color: #D8334A;
+            color: #D8334A;
+        }
+        .tree li:nth-child(4n+1)::before{
+            background-color: #FFCE54;
+            color: #FFCE54
+        }
+        .tree li:nth-child(4n+2)::before{
+            background-color: #2ECC71;
+            color: #2ECC71
+        }
+        .tree li:nth-child(4n+3)::before{
+            background-color: #5D9CEC;
+            color: #5D9CEC
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <ul class="tree">
+        <div class="star"></div>
+    </ul>
+</body>
+<script>
+    let tree = document.querySelector('.tree')
+    for (let i = 0; i < 128; i++) {
+        let li = document.createElement('li')
+        li.style = "--i:" + i
+        tree.appendChild(li)
+    }
+</script>
+
+</html>
